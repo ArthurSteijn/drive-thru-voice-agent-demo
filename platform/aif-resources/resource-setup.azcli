@@ -1,0 +1,63 @@
+# az upgrade
+az login --tenant <your-azure-tenant-id>
+
+$location = "swedencentral" # Deploy to this region to create the new foundry experience
+$resourceGroupName = "rg-voiceliveapi-demo"
+$foundryResourceName = "aif-voiceliveapi-demo"
+$foundryProjectName = "proj-voiceliveapi-demo"
+
+# Create Resource Group
+az group create `
+    --name $resourceGroupName `
+    --location $location
+
+# Create Azure Foundry Resource
+az cognitiveservices account create `
+    --name $foundryResourceName `
+    --resource-group $resourceGroupName `
+    --kind AIServices `
+    --sku S0 `
+    --location $location `
+    --custom-domain $foundryResourceName `
+    --assign-identity `
+    --yes
+
+# Create Foundry Project
+az cognitiveservices account project create `
+    --name $foundryResourceName `
+    --project-name $foundryProjectName `
+    --resource-group $resourceGroupName `
+    --location $location `
+    --assign-identity
+
+# ── RBAC Role Assignments ───────────────────────────────────────────
+# Required for DefaultAzureCredential / AzureCliCredential to work.
+# Get the current user's object ID
+$currentUserObjectId = (az ad signed-in-user show --query id -o tsv)
+$foundryResourceId = (az cognitiveservices account show `
+    --name $foundryResourceName `
+    --resource-group $resourceGroupName `
+    --query id -o tsv)
+
+# Azure AI User — required for Foundry Agent SDK operations
+az role assignment create `
+    --assignee $currentUserObjectId `
+    --role "Azure AI User" `
+    --scope $foundryResourceId
+
+# Cognitive Services User — required for VoiceLive and model inference
+az role assignment create `
+    --assignee $currentUserObjectId `
+    --role "Cognitive Services User" `
+    --scope $foundryResourceId
+
+# ── Model Deployment ────────────────────────────────────────────────
+az cognitiveservices account deployment create `
+    --name $foundryResourceName `
+    --resource-group $resourceGroupName `
+    --deployment-name "gpt-5.4" `
+    --model-name "gpt-5.4" `
+    --model-version "2026-03-05" `
+    --model-format "OpenAI" `
+    --sku-capacity 1 `
+    --sku-name "GlobalStandard"

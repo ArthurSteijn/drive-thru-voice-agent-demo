@@ -1,0 +1,30 @@
+{
+  "name": "voiceliveapi-drivethru-agent-demo",
+  "version": "1.0.0",
+  "description": "> **Agent-First Development**: Build intelligent agents first, then create UIs to surface their capabilities.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test:e2e:mock": "npx playwright test --project=local-mock",
+    "test:e2e:relay": "npx playwright test --project=local-relay",
+    "test:e2e:live": "npx playwright test --project=cloud-live"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurSteijn/voiceliveapi-drivethru-agent-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ArthurSteijn/voiceliveapi-drivethru-agent-demo/issues"
+  },
+  "homepage": "https://github.com/ArthurSteijn/voiceliveapi-drivethru-agent-demo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.0",
+    "@types/node": "^26.1.1"
+  }
+}

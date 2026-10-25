@@ -1,0 +1,1244 @@
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Outfit:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg: #0b0b0d;
+  --bg-halftone: rgba(255, 255, 255, 0.02);
+  --panel-bg: #1c1c22;
+  --border-manga: #000000;
+  
+  /* DBZ Brand Colors */
+  --orange-gi: #ff6f00;
+  --orange-gi-light: #ff8f00;
+  --blue-belt: #0d47a1;
+  --blue-belt-light: #1565c0;
+  --yellow-ssj: #ffeb3b;
+  --yellow-ssj-glow: rgba(255, 235, 59, 0.4);
+  
+  /* Scouter Colors */
+  --scouter-green: #00e676;
+  --scouter-green-glow: rgba(0, 230, 118, 0.35);
+  --scouter-green-bg: rgba(0, 230, 118, 0.04);
+  
+  /* Comic Paper / Text */
+  --paper-white: #fcfaf2;
+  --text-light: #f5f5fa;
+  --text-dark: #111116;
+  --text-muted: #8c8c9e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  /* Manga halftone background effect */
+  background-image: radial-gradient(var(--bg-halftone) 15%, transparent 16%),
+                    radial-gradient(var(--bg-halftone) 15%, transparent 16%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  color: var(--text-light);
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── App Container & Manga Grid ── */
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .manga-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Title Banner panel (DBZ Episode Style) ── */
+
+.header-panel {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--orange-gi) 0%, #d84315 100%);
+  border: 4px solid var(--border-manga);
+  box-shadow: 8px 8px 0px var(--border-manga);
+  padding: 1.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Manga Speed Lines Overlay */
+.header-panel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  pointer-events: none;
+}
+
+.header-title-area {
+  z-index: 1;
+}
+
+.header-panel h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  color: var(--yellow-ssj);
+  text-shadow: 
+    -3px -3px 0 #000,  
+     3px -3px 0 #000,
+    -3px  3px 0 #000,
+     3px  3px 0 #000,
+     6px  6px 0 var(--blue-belt);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+  line-height: 1;
+}
+
+.header-panel p {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.4rem;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  transform: rotate(-1deg);
+  display: inline-block;
+  background-color: var(--blue-belt);
+  padding: 0.2rem 0.8rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+}
+
+.header-decor {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  background-color: var(--yellow-ssj);
+  color: #000;
+  border: 3px solid #000;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  transform: rotate(3deg);
+  box-shadow: 3px 3px 0 #000;
+  z-index: 1;
+}
+
+/* Header Goku Character Badge */
+.header-goku-badge {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  border: 4px solid var(--border-manga);
+  box-shadow: 4px 4px 0px #000, 0 0 18px var(--yellow-ssj-glow);
+  background-color: var(--panel-bg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.header-goku-badge:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.header-goku-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .header-goku-badge {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* ── Comic Panel Base Styles ── */
+
+.manga-panel {
+  background-color: var(--panel-bg);
+  border: 4px solid var(--border-manga);
+  box-shadow: 6px 6px 0px var(--border-manga);
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-banner {
+  background-color: var(--blue-belt);
+  border-bottom: 4px solid var(--border-manga);
+  padding: 0.8rem 1.2rem;
+  position: relative;
+  margin-top: -4px;
+  margin-left: -4px;
+  margin-right: -4px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.panel-banner h2 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.5rem;
+  color: var(--yellow-ssj);
+  letter-spacing: 1px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-banner h2 span {
+  font-size: 0.9rem;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  text-shadow: none;
+  background-color: rgba(0,0,0,0.3);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #000;
+}
+
+/* ── Non-Scrollable Stage-Guided Menu Board Panel ── */
+
+.menu-panel {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: visible;
+}
+
+/* Ordering Process Stepper Bar */
+.stage-stepper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .stage-stepper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stage-pill {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-light);
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 0.45rem 0.35rem;
+  font-family: 'Bangers', cursive;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  position: relative;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.stage-pill:hover {
+  background-color: rgba(255, 111, 0, 0.25);
+  transform: translateY(-1px);
+}
+
+.stage-pill.active {
+  background-color: var(--orange-gi);
+  color: #fff;
+  box-shadow: 3px 3px 0px #000;
+  transform: translateY(-2px);
+}
+
+.stage-pill.has-items {
+  border-color: var(--yellow-ssj);
+}
+
+.stage-step-num {
+  background-color: #000;
+  color: var(--yellow-ssj);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-item-count {
+  background-color: var(--scouter-green);
+  color: #000;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  border: 1px solid #000;
+}
+
+/* Guided Stage Banner */
+.stage-guide-banner {
+  background: linear-gradient(90deg, rgba(13, 71, 161, 0.85) 0%, rgba(28, 28, 34, 0.95) 100%);
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.stage-guide-title {
+  font-family: 'Bangers', cursive;
+  font-size: 1.45rem;
+  color: var(--yellow-ssj);
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.stage-flex-hint {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--scouter-green);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 230, 118, 0.4);
+}
+
+.stage-guide-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--paper-white);
+  margin-top: 0.2rem;
+}
+
+/* 2-Column Car-Readable Stage Cards Grid (Zero Scroll) */
+.stage-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  flex-grow: 1;
+}
+
+@media (max-width: 640px) {
+  .stage-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.menu-card {
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-card.in-basket {
+  border-color: var(--scouter-green);
+  background-color: rgba(0, 230, 118, 0.08);
+}
+
+.menu-card.highlighted-card {
+  border-color: var(--yellow-ssj);
+  box-shadow: 0 0 15px var(--yellow-ssj-glow), 4px 4px 0px #000;
+}
+
+.menu-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.menu-item-name {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.12rem;
+  color: var(--paper-white);
+  line-height: 1.2;
+}
+
+.menu-item-price {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 700;
+  color: #000;
+  background-color: var(--yellow-ssj);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  border: 2px solid #000;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.menu-item-desc {
+  font-size: 0.88rem;
+  color: #d0d0df;
+  line-height: 1.35;
+}
+
+.menu-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.menu-item-meta {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--orange-gi-light);
+}
+
+.menu-card-badges {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.badge-in-basket {
+  background-color: var(--scouter-green);
+  color: #000;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  border: 1.5px solid #000;
+}
+
+.badge-recommended {
+  background-color: var(--yellow-ssj);
+  color: #000;
+  font-family: 'Bangers', cursive;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  border: 1.5px solid #000;
+}
+
+/* Order Review Board on Left Panel */
+.review-stage-board {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--yellow-ssj);
+  border-radius: 8px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.review-board-header h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.6rem;
+  color: var(--yellow-ssj);
+  letter-spacing: 1px;
+}
+
+.review-board-header p {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--paper-white);
+  margin-top: 0.25rem;
+}
+
+.review-empty-box {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 2rem;
+  text-align: center;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.review-items-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.review-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+}
+
+.review-item-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.review-item-qty {
+  background-color: var(--orange-gi);
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 2px solid #000;
+}
+
+.review-item-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--paper-white);
+}
+
+.review-item-custom {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--yellow-ssj);
+}
+
+.review-item-price {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--yellow-ssj);
+}
+
+.menu-board-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 2px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 0.65rem;
+}
+
+/* ── Console / Drive-thru Panel ── */
+
+.console-panel {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Saiyan Scouter Terminal HUD ── */
+
+.scouter-terminal {
+  background-color: var(--scouter-green-bg);
+  border: 3px solid var(--scouter-green);
+  box-shadow: 0 0 15px var(--scouter-green-glow), inset 0 0 15px var(--scouter-green-bg);
+  border-radius: 6px;
+  padding: 1.2rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* CRT Screen Scanline Overlay */
+.scouter-terminal::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+              linear-gradient(90deg, rgba(0, 230, 118, 0.05), rgba(0, 230, 118, 0.01), rgba(0, 230, 118, 0.05));
+  z-index: 2;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Scan Bar Animation */
+.scouter-scanline {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: var(--scouter-green);
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  box-shadow: 0 0 8px var(--scouter-green);
+  animation: scouter-scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scouter-scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.scouter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--scouter-green);
+  border-bottom: 1px solid rgba(0, 230, 118, 0.3);
+  padding-bottom: 0.4rem;
+  z-index: 4;
+}
+
+.scouter-grid {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 230, 118, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 230, 118, 0.07) 1px, transparent 1px);
+  background-size: 15px 15px;
+  pointer-events: none;
+}
+
+.scouter-body {
+  margin-top: 0.8rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--scouter-green);
+  z-index: 4;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scouter-status-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scouter-status-text {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
+
+.scouter-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 0.6rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--scouter-green);
+  z-index: 4;
+  border-top: 1px solid rgba(0, 230, 118, 0.2);
+  padding-top: 0.4rem;
+}
+
+/* Blinking target bracket styling */
+.target-brackets {
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+.scouter-terminal.listening .target-brackets {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Scouter Audio Wave Visualizer */
+.audio-visualizer {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 18px;
+}
+
+.visualizer-bar {
+  width: 3px;
+  height: 4px;
+  background-color: var(--scouter-green);
+  border-radius: 1px;
+  transition: height 0.1s ease;
+}
+
+.visualizer-bar.active-speaking {
+  animation: barBounce 0.4s ease-in-out infinite alternate;
+}
+.visualizer-bar.active-listening {
+  animation: barBounceSlow 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes barBounce {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+@keyframes barBounceSlow {
+  0% { height: 4px; }
+  100% { height: 10px; }
+}
+
+/* ── Dragon Ball Mic Controller ── */
+
+.mic-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  position: relative;
+}
+
+/* Target Reticle Brackets (Locks on the Dragon Ball) */
+.reticle-bracket {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-color: var(--scouter-green);
+  border-style: solid;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.scouter-terminal.active-hud .reticle-bracket {
+  opacity: 0.7;
+}
+
+.reticle-tl { top: 0; left: 20%; border-width: 4px 0 0 4px; }
+.reticle-tr { top: 0; right: 20%; border-width: 4px 4px 0 0; }
+.reticle-bl { bottom: 25%; left: 20%; border-width: 0 0 4px 4px; }
+.reticle-br { bottom: 25%; right: 20%; border-width: 0 4px 4px 0; }
+
+.scouter-terminal.listening-hud .reticle-bracket {
+  border-color: var(--orange-gi);
+  animation: reticlePulse 1s ease-in-out infinite alternate;
+  opacity: 1;
+}
+
+@keyframes reticlePulse {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1.05); }
+}
+
+/* The Dragon Ball Button */
+.dragonball-btn {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid var(--border-manga);
+  background: radial-gradient(circle at 35% 35%, #ffb74d 0%, #ff8f00 45%, #e65100 85%, #b71c1c 100%);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 
+    0 8px 0 #000, 
+    0 15px 20px rgba(0,0,0,0.4),
+    inset 0 4px 4px rgba(255,255,255,0.4),
+    inset 0 -6px 12px rgba(0,0,0,0.4);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 10;
+  outline: none;
+}
+
+.dragonball-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 0 #000, 
+    0 18px 24px rgba(0,0,0,0.5),
+    inset 0 4px 4px rgba(255,255,255,0.5),
+    inset 0 -6px 12px rgba(0,0,0,0.3);
+}
+
+.dragonball-btn:active {
+  transform: translateY(6px);
+  box-shadow: 
+    0 2px 0 #000,
+    0 4px 6px rgba(0,0,0,0.4),
+    inset 0 2px 2px rgba(255,255,255,0.3);
+}
+
+/* Star Arrangement Inside Dragon Ball (4 Stars is the signature Goku ball) */
+.db-stars {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+}
+
+.db-star {
+  position: absolute;
+  color: #d84315;
+  font-size: 15px;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.1);
+  line-height: 1;
+}
+
+/* 4 Stars layout coordinates */
+.db-star:nth-child(1) { top: 0px; left: 14px; } /* top */
+.db-star:nth-child(2) { bottom: 0px; left: 14px; } /* bottom */
+.db-star:nth-child(3) { top: 14px; left: 0px; } /* left */
+.db-star:nth-child(4) { top: 14px; right: 0px; } /* right */
+
+/* Mic Icon overlay */
+.db-mic-icon {
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 0px #000;
+  z-index: 11;
+  pointer-events: none;
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5));
+}
+
+/* active mic state overrides */
+.dragonball-btn.active {
+  background: radial-gradient(circle at 35% 35%, #ffe082 0%, #ffca28 45%, #ff8f00 80%, #d84315 100%);
+  animation: dbRotate 2s linear infinite;
+}
+
+@keyframes dbRotate {
+  0% { transform: scale(1.02) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(180deg); }
+  100% { transform: scale(1.02) rotate(360deg); }
+}
+
+.dragonball-btn.active .db-mic-icon {
+  animation: dbMicPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes dbMicPulse {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1.1); }
+}
+
+/* Super Saiyan Glowing Aura */
+.ssj-aura {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle, rgba(255,235,59,0.3) 0%, rgba(255,152,0,0.1) 50%, transparent 70%);
+}
+
+.dragonball-btn.active ~ .ssj-aura {
+  opacity: 1;
+  animation: ssjAuraPulse 1.2s ease-in-out infinite alternate, ssjAuraSparks 0.8s steps(4) infinite;
+  box-shadow: 
+    0 0 35px var(--yellow-ssj-glow),
+    0 0 60px rgba(255, 111, 0, 0.4),
+    inset 0 0 20px rgba(255,255,255,0.6);
+}
+
+@keyframes ssjAuraPulse {
+  0% { transform: scale(1.0); filter: brightness(1); }
+  100% { transform: scale(1.25); filter: brightness(1.3) contrast(1.2); }
+}
+
+/* Electric sparks representing SSJ2 lightning surrounding active ball */
+.ssj-sparks {
+  position: absolute;
+  top: -15px; left: -15px; right: -15px; bottom: -15px;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+}
+
+.dragonball-btn.active ~ .ssj-sparks {
+  opacity: 0.7;
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--yellow-ssj) 1px, transparent 2px),
+    radial-gradient(circle at 90% 40%, #00e5ff 1.5px, transparent 2.5px),
+    radial-gradient(circle at 30% 80%, var(--yellow-ssj) 1px, transparent 2px),
+    radial-gradient(circle at 80% 80%, #00e5ff 1px, transparent 2px);
+  background-size: 100% 100%;
+  animation: sparkFlicker 0.2s linear infinite;
+}
+
+@keyframes sparkFlicker {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
+  50% { transform: scale(1.1) rotate(90deg); opacity: 0.8; }
+  25% { transform: scale(0.95) rotate(-45deg); }
+  75% { transform: scale(1.05) rotate(180deg); }
+}
+
+/* ── Manga Conversation Transcript Speech Bubble ── */
+
+.transcript-section {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.speech-bubble {
+  position: relative;
+  background-color: var(--paper-white);
+  border: 3px solid var(--border-manga);
+  box-shadow: 4px 4px 0px var(--border-manga);
+  border-radius: 12px;
+  padding: 0.8rem 1rem 1.4rem 1rem;
+  color: var(--text-dark);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin-bottom: 0.5rem;
+}
+
+/* Speech bubble arrow/tail pointing to speaker */
+.speech-bubble::after, .speech-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  border-style: solid;
+  display: block;
+  width: 0;
+}
+
+.speech-bubble.agent-bubble::after,
+.speech-bubble.agent-bubble::before {
+  left: 25px;
+}
+
+.speech-bubble.user-bubble::after,
+.speech-bubble.user-bubble::before {
+  right: 25px;
+}
+
+.speech-bubble.agent-bubble::after {
+  border-color: var(--paper-white) transparent transparent transparent;
+  border-width: 15px 10px 0 10px;
+  bottom: -12px;
+  z-index: 2;
+}
+
+.speech-bubble.user-bubble::after {
+  border-color: var(--blue-belt) transparent transparent transparent;
+  border-width: 15px 10px 0 10px;
+  bottom: -12px;
+  z-index: 2;
+}
+
+.speech-bubble::before {
+  border-color: var(--border-manga) transparent transparent transparent;
+  border-width: 18px 12px 0 12px;
+  bottom: -17px;
+  z-index: 1;
+}
+
+.speech-bubble-speaker {
+  font-family: 'Bangers', cursive;
+  font-size: 1rem;
+  color: var(--orange-gi);
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.1rem;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+}
+
+/* Compact side-by-side Scouter HUD and Dragon Ball Mic */
+.comm-link-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .comm-link-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Capsule Corp Live Basket & Invoice Summary ── */
+
+.order-summary-panel {
+  padding: 1.1rem 1.25rem;
+  background-color: #f1f1f5;
+  border: 4px solid var(--border-manga);
+  box-shadow: 6px 6px 0px var(--border-manga);
+  border-radius: 8px;
+  color: var(--text-dark);
+}
+
+.order-summary-panel.status-reviewing {
+  border-color: var(--yellow-ssj);
+  box-shadow: 0 0 18px var(--yellow-ssj-glow), 6px 6px 0px var(--border-manga);
+}
+
+.order-summary-panel.status-confirmed {
+  border-color: var(--scouter-green);
+}
+
+.basket-empty-state {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  color: #555566;
+  text-align: center;
+  padding: 0.85rem;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  margin-bottom: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.basket-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #000;
+}
+
+.basket-line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 0.4rem 0.65rem;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.basket-line-left {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.basket-item-qty {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 800;
+  color: var(--orange-gi);
+}
+
+.basket-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.basket-item-name {
+  font-weight: 700;
+  color: #000;
+}
+
+.basket-item-custom {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--blue-belt);
+}
+
+.basket-item-price {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 700;
+  color: #000;
+}
+
+.receipt-grand-total {
+  font-size: 1.05rem;
+  padding-top: 0.25rem;
+}
+
+.capsule-corp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px double var(--border-manga);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.capsule-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* CSS-drawn Capsule Corp logo mark */
+.capsule-logo-mark {
+  width: 32px;
+  height: 18px;
+  background: linear-gradient(to right, #0d47a1 50%, #ffffff 50%);
+  border: 2.5px solid #000;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+.capsule-logo-mark::before {
+  content: "C";
+  position: absolute;
+  left: 3.5px;
+  top: -1.5px;
+  color: #fff;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 10px;
+}
+.capsule-logo-mark::after {
+  content: "C";
+  position: absolute;
+  right: 3.5px;
+  top: -1.5px;
+  color: #000;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 10px;
+}
+
+.capsule-corp-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.capsule-corp-title span {
+  font-size: 0.75rem;
+  display: block;
+  font-weight: normal;
+  color: #555566;
+}
+
+.invoice-badge {
+  background-color: var(--orange-gi);
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 1rem;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid #000;
+  transform: rotate(3deg);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.receipt-body {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  line-height: 1.4;
+  border-bottom: 2px dashed rgba(0,0,0,0.2);
+  padding-bottom: 1rem;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted rgba(0,0,0,0.1);
+  padding-bottom: 0.2rem;
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+}
+
+.receipt-label {
+  color: #555566;
+}
+
+.receipt-value {
+  font-weight: bold;
+  color: #000;
+}
+
+.receipt-footer {
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.barcode {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-family: 'Libre Barcode 39', 'Courier New', monospace; /* fallback to lines */
+  color: #000;
+  margin-bottom: 0.3rem;
+  user-select: none;
+  font-weight: normal;
+}
+
+.receipt-thankyou {
+  font-size: 0.8rem;
+  color: #555566;
+  text-transform: uppercase;
+}
+
+/* Prompt help tip below the scouter */
+.voice-tip {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0.25rem;
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 4px;
+}

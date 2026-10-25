@@ -1,0 +1,13 @@
+name: voiceliveapi-drivethru-agent-demo
+metadata:
+  template: voiceliveapi-drivethru-agent-demo@0.1.0
+
+services:
+  web:
+    project: .
+    language: python
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      context: .
+      remoteBuild: true

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Top Bun Gradient -->
+    <linearGradient id="topBun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <!-- Bottom Bun Gradient -->
+    <linearGradient id="bottomBun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <!-- Patty Gradient -->
+    <linearGradient id="patty" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#854D0E"/>
+      <stop offset="100%" stop-color="#581C87"/>
+    </linearGradient>
+    <!-- Cheese Shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Top Bun -->
+  <path d="M 10 26 C 10 11, 54 11, 54 26 C 54 27.5, 10 27.5, 10 26 Z" fill="url(#topBun)" stroke="#B45309" stroke-width="1.5" />
+  
+  <!-- Sesame Seeds -->
+  <ellipse cx="22" cy="18" rx="1.8" ry="1.1" fill="#FEF3C7" transform="rotate(-15 22 18)"/>
+  <ellipse cx="32" cy="15" rx="1.8" ry="1.1" fill="#FEF3C7"/>
+  <ellipse cx="42" cy="18" rx="1.8" ry="1.1" fill="#FEF3C7" transform="rotate(15 42 18)"/>
+  <ellipse cx="27" cy="22" rx="1.8" ry="1.1" fill="#FEF3C7" transform="rotate(-5 27 22)"/>
+  <ellipse cx="37" cy="22" rx="1.8" ry="1.1" fill="#FEF3C7" transform="rotate(8 37 22)"/>
+
+  <!-- Tomato -->
+  <path d="M 11 27 L 53 27 C 54.5 27, 54.5 30.5, 53 30.5 L 11 30.5 C 9.5 30.5, 9.5 27, 11 27 Z" fill="#EF4444" stroke="#B91C1C" stroke-width="1"/>
+
+  <!-- Cheese with Melted Corner -->
+  <path d="M 12 30.5 L 52 30.5 L 50 34 L 43 32 L 35 38 L 26 31.5 L 18 36 L 14 31 Z" fill="#FACC15" stroke="#EAB308" stroke-width="0.8" filter="url(#shadow)"/>
+
+  <!-- Grilled Patty -->
+  <rect x="9" y="34.5" width="46" height="7.5" rx="3.75" fill="#713F12" stroke="#451A03" stroke-width="1.2"/>
+
+  <!-- Lettuce Frills -->
+  <path d="M 8 41 C 12 44, 15 41, 19 43 C 23 45, 27 41, 31 43 C 35 45, 39 41, 43 43 C 47 45, 51 41, 56 42.5 L 55 45.5 C 50 44, 46 47, 42 45.5 C 38 44, 34 47, 30 45.5 C 26 44, 22 47, 18 45 C 14 43, 11 45.5, 8 43.5 Z" fill="#22C55E" stroke="#15803D" stroke-width="0.8"/>
+
+  <!-- Bottom Bun -->
+  <path d="M 11 45 L 53 45 C 54.5 45, 53.5 53, 47 54 L 17 54 C 10.5 54, 9.5 45, 11 45 Z" fill="url(#bottomBun)" stroke="#B45309" stroke-width="1.5" />
+</svg>

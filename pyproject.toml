@@ -1,0 +1,90 @@
+[project]
+name = "voiceliveapi-drivethru-agent-demo"
+version = "0.1.0"
+description = "Azure AI Foundry Agent demo for voice-enabled drive-through ordering with Fabric Database integration"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    # Azure AI Foundry & Agent Framework
+    "azure-ai-projects[voice]>=2.7.0",
+    "azure-identity>=1.25.1",
+    "azure-mgmt-cognitiveservices>=13.7.0",
+    "agent-framework",
+    "agent-framework-azure-ai",
+    
+    # Microsoft Fabric Database
+    "pyodbc>=5.1.0",
+    "sqlalchemy>=2.0.0",
+
+    # Fabric CI/CD & REST API
+    "fabric-cicd>=0.1.23",
+    "requests>=2.32.0",
+    
+    # Utilities
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.7.0",
+    "typing-extensions>=4.11.0",
+
+    # Backend relay
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "websockets>=13.0",
+    "python-multipart>=0.0.9",
+
+    # Azure VoiceLive SDK
+    "azure-ai-voicelive>=1.2.0b4",
+    "aiohttp>=3.9.0",
+
+    "openai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-timeout>=2.2.0",
+    "black>=24.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+# pyaudio requires the native PortAudio library (portaudio.h).
+# Install with: uv pip install -e ".[audio]"
+# On Ubuntu: sudo apt-get install portaudio19-dev
+audio = [
+    "pyaudio>=0.2.14",
+]
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "black>=24.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+
+[tool.pytest.ini_options]
+timeout = 5
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "e2e: end-to-end tests requiring live Azure credentials (deselect with '-m not e2e')",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py313']
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false

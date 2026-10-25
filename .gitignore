@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment & Local Secrets
+.env
+.env.local
+
+# Node & Frontend
+node_modules/
+src/frontend/node_modules/
+src/frontend/dist/
+*.tsbuildinfo
+
+# Playwright & Test Artifacts
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+*.png
+!src/frontend/src/assets/*.png
+!src/frontend/public/*.png
+
+# IDE & Editor
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Operating System & Logs
+.DS_Store
+Thumbs.db
+logs/*
+
+# Superpowers & Agent Scratch
+*/superpowers/
+
+# Azure Developer CLI local environment
+.azure/
